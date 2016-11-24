@@ -1,16 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CheckboxWithLabel from '../CheckboxWithLabel';
+import LinkToInbox from '.';
 
-it('CheckboxWithLabel changes the text after click', () => {
-  // Render a checkbox with label in the document
-  const checkbox = shallow(
-    <CheckboxWithLabel labelOn="On" labelOff="Off" />
+it('renders with only an email', () => {
+  const rendered = shallow(
+    <LinkToInbox email={'douglas.b.wade@gmail.com'}/>
   );
-
-  expect(checkbox.text()).toEqual('Off');
-
-  checkbox.find('input').simulate('change');
-
-  expect(checkbox.text()).toEqual('On');
+  expect(rendered.text()).to.equal('open in gmail');
 });

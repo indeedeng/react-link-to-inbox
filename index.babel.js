@@ -1,8 +1,10 @@
 import React from 'react';
 import {getSpec, getHref} from 'link-to-inbox';
 
-const LinkToInbox = ({template, subject, sender, email, tag}) => {
+const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
   tag = tag || 'a';
+  templ = templ || template`open in ${domain}`; // eslint-disable-line no-undef
+
   const filter = {subject, sender};
   let spec = getSpec(email, filter, true);
   let href = getHref(email, filter, true);
@@ -21,13 +23,13 @@ const LinkToInbox = ({template, subject, sender, email, tag}) => {
     href = spec.protocol + '://' + spec.domain;
   }
 
-  const msg = template({href, sender, subject, email, ...spec});
+  const msg = templ({href, sender, subject, email, ...spec});
 
   return <tag href={href}>{msg}</tag>;
 };
 
 LinkToInbox.propTypes = {
-  template: React.propTypes.string,
+  template: React.propTypes.func,
   subject: React.propTypes.string,
   sender: React.propTypes.string,
   email: (props, propName) => {

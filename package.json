@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepublish": "babel index.babel.js -o index.js",
-    "test": "xo index.babel.js && jest"
+    "test": "xo index.babel.js && jest && snyk test"
   },
   "keywords": [
     "react",
@@ -17,7 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "link-to-inbox": "^1.1.0",
-    "react": "0.14 || 15"
+    "react": "0.14 || 15",
+    "react-dom": "^15.4.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -31,6 +32,7 @@
     "jest": "^17.0.3",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
+    "snyk": "1.20.0",
     "xo": "^0.17.1"
   },
   "xo": {
