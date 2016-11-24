@@ -4,8 +4,8 @@ import {getSpec, getHref} from 'link-to-inbox';
 const LinkToInbox = ({template, subject, sender, email, tag}) => {
   tag = tag || 'a';
   const filter = {subject, sender};
-  let spec = lti.getSpec(email, filter, true);
-  let href = lti.getHref(email, filter, true);
+  let spec = getSpec(email, filter, true);
+  let href = getHref(email, filter, true);
 
   if (!spec) {
     const domain = email.split('@')[1];
@@ -21,11 +21,13 @@ const LinkToInbox = ({template, subject, sender, email, tag}) => {
     href = spec.protocol + '://' + spec.domain;
   }
 
-  return <a href={href}>{msg}</a>;
+  const msg = template({href, sender, subject, email, ...spec});
+
+  return <tag href={href}>{msg}</tag>;
 };
 
 LinkToInbox.propTypes = {
-  msg: React.propTypes.string,
+  template: React.propTypes.string,
   subject: React.propTypes.string,
   sender: React.propTypes.string,
   email: (props, propName) => {
@@ -34,16 +36,16 @@ LinkToInbox.propTypes = {
     }
   },
   tag: React.propTypes.oneOf(['a', 'button', 'input'])
-}
+};
 
 export default LinkToInbox;
 
 export function template(strings, ...keys) {
-  return (function(values) {
-    var result = [strings[0]];
-    keys.forEach(function(key, i) {
+  return values => {
+    const result = [strings[0]];
+    keys.forEach((key, i) => {
       result.push(values[key], strings[i + 1]);
     });
     return result.join('');
-  });
+  };
 }
