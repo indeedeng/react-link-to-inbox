@@ -27,7 +27,7 @@ export default (email) => {
   <LinkToInbox
       email={email}
       subject={'Confirm your account'}
-      sender={'noreply@indeed.com'}
+      sender={'noreply@dougwade.io'}
       tag={'a'}
       template={template`Open email to ${email} from ${sender} in ${domain}`}
     />

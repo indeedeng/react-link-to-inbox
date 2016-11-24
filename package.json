@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prepublish": "babel index.babel.js -o index.js",
-    "test": "xo index.babel.js && jest && snyk test"
+    "test": "xo index.babel.js && jest && snyk test",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [
     "react",
@@ -13,7 +15,7 @@
     "email",
     "link"
   ],
-  "author": "Doug Wade <dwade@indeed.com>",
+  "author": "Doug Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "link-to-inbox": "^1.1.0",
@@ -33,7 +35,8 @@
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
     "snyk": "1.20.0",
-    "xo": "^0.17.1"
+    "xo": "^0.17.1",
+    "@kadira/storybook": "^2.21.0"
   },
   "xo": {
     "extends": "xo-react",
