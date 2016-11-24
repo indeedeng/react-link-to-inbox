@@ -1,0 +1,40 @@
+{
+  "name": "react-link-to-inbox",
+  "version": "0.0.1",
+  "description": "A React wrapper for link-to-inbox",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "babel index.babel.js -o index.js",
+    "test": "xo index.babel.js && jest"
+  },
+  "keywords": [
+    "react",
+    "link-to-inbox",
+    "email",
+    "link"
+  ],
+  "author": "Doug Wade <dwade@indeed.com>",
+  "license": "MIT",
+  "dependencies": {
+    "link-to-inbox": "^1.1.0",
+    "react": "0.14 || 15"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-jest": "^17.0.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "enzyme": "^2.6.0",
+    "eslint-config-xo-react": "^0.10.0",
+    "eslint-plugin-react": "^6.7.1",
+    "jest": "^17.0.3",
+    "react-addons-test-utils": "^15.4.1",
+    "react-test-renderer": "^15.4.1",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "space": 2
+  }
+}
