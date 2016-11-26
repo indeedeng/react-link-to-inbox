@@ -54,12 +54,6 @@ LinkToInbox.propTypes = {
 
 export default LinkToInbox;
 
-export function template(strings, ...keys) {
-  return values => {
-    const result = [strings[0]];
-    keys.forEach((key, i) => {
-      result.push(values[key], strings[i + 1]);
-    });
-    return result.join('');
-  };
+export function styled (component) {
+  return component;
 }

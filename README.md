@@ -21,15 +21,15 @@ yarn add react-link-to-inbox
 ## Full example
 
 ```javascript
-import LinkToInbox, {template} from 'react-link-to-inbox';
+import LinkToInbox, {styled} from 'react-link-to-inbox';
 
 export default (email) => {
-  <LinkToInbox
+  return styled(<LinkToInbox
       email={email}
       subject={'Confirm your account'}
       sender={'noreply@dougwade.io'}
       tag={'a'}
-      template={template`Open email to ${email} from ${sender} in ${domain}`}
-    />
+      template={() => `Open email to ${email} from ${sender} in ${domain}`}
+    />);
 }
 ```
