@@ -26,7 +26,7 @@ storiesOf('LinkToInbox', module)
       <LinkToInbox
           email={'example@live.com'}
           subject={'Confirm your account'}
-          template={'Open email on domain <%- domain %> in provider <%- provider %>'}
+          template={'Open email on domain <%- domain %> in provider <%- name %>'}
         />
       )
   ))
@@ -40,6 +40,6 @@ storiesOf('LinkToInbox', module)
         sender={'noreply@dougwade.io'}
         tag={'a'}
         className={'link-to-inbox'}
-        template={'Open email in <%- provider %>'}
+        template={'Open email in <%- name %>'}
       />)
   ));
