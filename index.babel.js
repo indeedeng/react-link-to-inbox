@@ -1,10 +1,10 @@
 import React from 'react';
 import {getSpec, getHref} from 'link-to-inbox';
+import template from 'lodash-template';
 
 const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
   tag = tag || 'a';
-  templ = () => 'open in gmail';
-  // templ = templ || template`open in ${domain}`; // eslint-disable-line no-undef
+  templ = templ || 'Open in <%- name %>';
 
   const filter = {subject, sender};
   let spec = getSpec(email, filter, true);
@@ -24,13 +24,16 @@ const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
     href = spec.protocol + '://' + spec.domain;
   }
 
-  const msg = templ({href, sender, subject, email, ...spec});
+  const msg = template(templ)(spec);
+  function clickHandler() {
+    window.location.href = href;
+  }
 
   switch (tag) {
     case 'a':
       return (<a href={href}>{msg}</a>);
     case 'button':
-      return (<button onclick={`window.location.href=${href}`}>{msg}</button>);
+      return (<button onClick={clickHandler}>{msg}</button>);
     // TODO: Support input
     // case:
     //   return (<input type="button" onclick={`window.location.href=${href}`}>{msg}</input>);
@@ -49,11 +52,11 @@ LinkToInbox.propTypes = {
     }
   },
   // comment this in when we support input
-  tag: React.PropTypes.oneOf(['a', 'button' /*, 'input' */])
+  tag: React.PropTypes.oneOf(['a', 'button'/* , 'input' */])
 };
 
 export default LinkToInbox;
 
-export function styled (component) {
+export function styled(component) {
   return component;
 }
