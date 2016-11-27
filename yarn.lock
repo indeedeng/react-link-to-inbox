@@ -3923,9 +3923,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-link-to-inbox@^1.1.0:
+"link-to-inbox@git://github.com/doug-wade/link-to-inbox.git#expose-get-spec":
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/link-to-inbox/-/link-to-inbox-1.1.0.tgz#4b61452546fa825edb258f97d23854a72b22638f"
+  resolved "git://github.com/doug-wade/link-to-inbox.git#78d589f19519c87ba1549492f5c9d09da4609183"
 
 load-json-file@^1.0.0:
   version "1.1.0"

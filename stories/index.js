@@ -9,6 +9,7 @@ storiesOf('LinkToInbox', module)
   .add('Add search terms to reduce distraction', () => (
     <LinkToInbox
         email={'example@hotmail.com'}
+        tag={'input'}
         subject={'Confirm your account'}
         sender={'noreply@dougwade.io'}
       />
@@ -20,7 +21,7 @@ storiesOf('LinkToInbox', module)
         className={'primary'}
       />
   ))
-  .add('Add custom button text with templating', () => (
+  .add('Add custom text with templating', () => (
     styled(
       <LinkToInbox
           email={'example@live.com'}
