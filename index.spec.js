@@ -7,5 +7,5 @@ it('renders with only an email', () => {
     <LinkToInbox email={'douglas.b.wade@gmail.com'}/>
   );
   expect(rendered.type()).toBe('a');
-  expect(rendered.text()).toBe('open in gmail');
+  expect(rendered.text()).toBe('Open in Gmail');
 });

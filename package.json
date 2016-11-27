@@ -4,10 +4,16 @@
   "description": "A React wrapper for link-to-inbox",
   "main": "index.js",
   "scripts": {
+    "audit": "snyk test",
+    "build": "npm run clean && npm run prepublish && npm run test",
+    "build-storybook": "build-storybook",
+    "clean": "del index.js",
+    "coverage": "cat .coverage/lcov-report/index.html | codecov",
+    "lint": "xo index.babel.js",
     "prepublish": "babel index.babel.js -o index.js",
-    "test": "xo index.babel.js && jest && snyk test",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "npm run unit-test && npm run lint && npm run audit",
+    "unit-test": "jest"
   },
   "keywords": [
     "react",
@@ -18,7 +24,9 @@
   "author": "Doug Wade <douglas.b.wade@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "global": "^4.3.1",
     "link-to-inbox": "^1.1.0",
+    "lodash-template": "^1.0.0",
     "react": "0.14 || 15",
     "react-dom": "^15.4.1"
   },
@@ -29,18 +37,34 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "codecov": "^1.0.1",
+    "del-cli": "^0.2.0",
     "enzyme": "^2.6.0",
     "eslint-config-xo-react": "^0.10.0",
     "eslint-plugin-react": "^6.7.1",
     "jest": "^17.0.3",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
-    "snyk": "1.20.0",
+    "snyk": "^1.20.0",
     "styled-components": "^1.1.2",
     "xo": "^0.17.1"
   },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": "index.js",
+    "coverageDirectory": ".coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    }
+  },
   "xo": {
     "extends": "xo-react",
-    "space": 2
+    "space": 2,
+    "env": "browser"
   }
 }
