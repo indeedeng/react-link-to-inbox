@@ -34,10 +34,10 @@ const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
       return (<a href={href}>{msg}</a>);
     case 'button':
       return (<button onClick={clickHandler}>{msg}</button>);
-    // TODO: Support input
-    // case:
-    //   return (<input type="button" onclick={`window.location.href=${href}`}>{msg}</input>);
+    case 'input':
+      return (<input type="button" onClick={clickHandler} value={msg}/>);
     default:
+      console.error(`unrecognized tag ${tag}`);
       throw new Error(`unrecognized tag ${tag}`);
   }
 };
@@ -52,7 +52,7 @@ LinkToInbox.propTypes = {
     }
   },
   // comment this in when we support input
-  tag: React.PropTypes.oneOf(['a', 'button'/* , 'input' */])
+  tag: React.PropTypes.oneOf(['a', 'button', 'input'])
 };
 
 export default LinkToInbox;
