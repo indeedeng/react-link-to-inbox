@@ -68,3 +68,7 @@ export default (email) => {
     />);
 }
 ```
+
+## Documentation
+
+See the examples in [our storybook](https://doug-wade.github.io/react-link-to-inbox/).
