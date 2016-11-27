@@ -1,7 +1,7 @@
 import React from 'react';
 import jest from 'jest';
 import {shallow} from 'enzyme';
-import LinkToInbox from '.';
+import LinkToInbox, {styled} from '.';
 
 it('renders with a gmail email', () => {
   const rendered = shallow(
@@ -60,9 +60,33 @@ it('renders as an input type button', () => {
   expect(rendered.is('input[value="Open in Outlook"]')).toBe(true);
 });
 
+it('renders text from a template', () => {
+  const rendered = shallow(
+    <LinkToInbox
+        email={'example@gmail.com'}
+        template={'<%- name %> <%- protocol %> <%- domain %> <%- path %> <%- href %>'}
+      />
+  );
+  expect(rendered.text()).toBe('Gmail https mail.google.com /mail/u/0/#search/in%3Aanywhere https://mail.google.com/mail/u/0/#search/in%3Aanywhere');
+});
+
+it('renders a styled link', () => {
+  const rendered = shallow(
+    styled(<LinkToInbox email={'example@gmail.com'}/>)
+  );
+  expect(rendered.type()).toBe('a');
+  expect(rendered.text()).toBe('Open in Gmail');
+});
+
 it('throws on unsupported tag types', () => {
   expect(() => shallow(<LinkToInbox
         email={'example@live.com'}
         tag={'div'}
       />)).toThrow(new Error(`unrecognized tag div`));
+});
+
+it('throws on invalid email addresses', () => {
+  expect(() => shallow(<LinkToInbox
+        email={'example'}
+      />)).toThrow(new Error(`Invalid email address example`));
 });

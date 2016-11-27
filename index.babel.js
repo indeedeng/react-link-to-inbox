@@ -3,6 +3,10 @@ import {getSpec, getHref} from 'link-to-inbox';
 import template from 'lodash-template';
 
 const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
+  if (!email.includes('@')) {
+    throw new Error(`Invalid email address ${email}`);
+  }
+
   tag = tag || 'a';
   templ = templ || 'Open in <%- name %>';
 
@@ -16,15 +20,15 @@ const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
       name: domain,
       protocol: 'https',
       domain,
-      path: domain
+      path: ''
     };
   }
 
   if (!href) {
-    href = spec.protocol + '://' + spec.domain;
+    href = spec.protocol + '://' + spec.domain + spec.path;
   }
 
-  const msg = template(templ)(spec);
+  const msg = template(templ)({subject, email, sender, href, ...spec});
   function clickHandler() {
     window.location.href = href;
   }
