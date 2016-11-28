@@ -19,9 +19,16 @@ it('renders with a hotmail email', () => {
   expect(rendered.text()).toBe('Open in Outlook');
 });
 
-it('renders with an unrecognized domain', () => {
+it('does not guess unknown domains by default', () => {
   const rendered = shallow(
     <LinkToInbox email={'example@example.com'}/>
+  );
+  expect(rendered.type()).toBe(null);
+});
+
+it('renders with an unknown domain if configured', () => {
+  const rendered = shallow(
+    <LinkToInbox email={'example@example.com'} guessUnknownDomain/>
   );
   expect(rendered.type()).toBe('a');
   expect(rendered.text()).toBe('Open in example.com');

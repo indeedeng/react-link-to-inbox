@@ -2,7 +2,7 @@ import React from 'react';
 import {getSpec, getHref} from 'link-to-inbox';
 import template from 'lodash-template';
 
-const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
+const LinkToInbox = ({template: templ, subject, sender, email, tag, guessUnknownDomain}) => {
   if (!email.includes('@')) {
     throw new Error(`Invalid email address ${email}`);
   }
@@ -15,6 +15,10 @@ const LinkToInbox = ({template: templ, subject, sender, email, tag}) => {
   let href = getHref(email, filter, true);
 
   if (!spec) {
+    if (!guessUnknownDomain) {
+      return null;
+    }
+
     const domain = email.split('@')[1];
     spec = {
       name: domain,
@@ -56,7 +60,8 @@ LinkToInbox.propTypes = {
     }
   },
   // comment this in when we support input
-  tag: React.PropTypes.oneOf(['a', 'button', 'input'])
+  tag: React.PropTypes.oneOf(['a', 'button', 'input']),
+  guessUnknownDomain: React.PropTypes.boolean
 };
 
 export default LinkToInbox;
