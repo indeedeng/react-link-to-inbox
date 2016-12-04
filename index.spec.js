@@ -1,7 +1,7 @@
 import React from 'react';
 import jest from 'jest';
 import {shallow} from 'enzyme';
-import LinkToInbox, {styled} from '.';
+import LinkToInbox, { StyledInboxButton, StyledInboxLink, StyledInboxInput, InboxButton, InboxInput } from '.';
 
 it('renders with a gmail email', () => {
   const rendered = shallow(
@@ -70,12 +70,44 @@ it('renders text from a template', () => {
   expect(rendered.text()).toBe('Gmail https mail.google.com /mail/u/0/#search/in%3Aanywhere https://mail.google.com/mail/u/0/#search/in%3Aanywhere');
 });
 
-it('renders a styled link', () => {
+it('renders a InboxButton', () => {
   const rendered = shallow(
-    styled(<LinkToInbox email={'example@gmail.com'}/>)
+    <InboxButton email={'example@gmail.com'}/>
   );
-  expect(rendered.type()).toBe('a');
-  expect(rendered.text()).toBe('Open in Gmail');
+  expect(rendered.type()).toBe(LinkToInbox);
+  expect(rendered.text()).toBe('<LinkToInbox />');
+});
+
+it('renders a InboxInput', () => {
+  const rendered = shallow(
+    <InboxInput email={'example@gmail.com'}/>
+  );
+  expect(rendered.type()).toBe(LinkToInbox);
+  expect(rendered.text()).toBe('<LinkToInbox />');
+});
+
+it('renders a StyledInboxButton', () => {
+  const rendered = shallow(
+    <StyledInboxButton email={'example@gmail.com'}/>
+  );
+  expect(rendered.type()).toBe(InboxButton);
+  expect(rendered.text()).toBe('<InboxButton />');
+});
+
+it('renders a StyledInboxLink', () => {
+  const rendered = shallow(
+    <StyledInboxLink email={'example@gmail.com'}/>
+  );
+  expect(rendered.type()).toBe(LinkToInbox);
+  expect(rendered.text()).toBe('<LinkToInbox />');
+});
+
+it('renders a StyledInboxInput', () => {
+  const rendered = shallow(
+    <StyledInboxInput email={'example@gmail.com'}/>
+  );
+  expect(rendered.type()).toBe(InboxInput);
+  expect(rendered.text()).toBe('<InboxInput />');
 });
 
 it('throws on unsupported tag types', () => {

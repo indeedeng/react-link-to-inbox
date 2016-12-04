@@ -61,10 +61,10 @@ import LinkToInbox, {styled} from 'react-link-to-inbox';
 export default (email) => {
   return styled(<LinkToInbox
       email={email}
-      subject={'Confirm your account'}
-      sender={'noreply@dougwade.io'}
-      tag={'a'}
-      template={'Open email to <%- email %> from <%- sender %> in <%- domain %>'}
+      subject='Confirm your account'
+      sender='noreply@dougwade.io'
+      tag='a'
+      template='Open email to <%- email %> from <%- sender %> in <%- domain %>'
     />);
 }
 ```
