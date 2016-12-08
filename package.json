@@ -1,6 +1,6 @@
 {
   "name": "react-link-to-inbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A React wrapper for link-to-inbox",
   "main": "index.js",
   "scripts": {
