@@ -19,12 +19,19 @@ it('renders with a hotmail email', () => {
   expect(rendered.text()).toBe('Open in Outlook');
 });
 
-it('renders with an unrecognized domain', () => {
+it('renders with an unrecognized domain if configured', () => {
   const rendered = shallow(
-    <LinkToInbox email={'example@example.com'}/>
+    <LinkToInbox email={'example@example.com'} guessUnknownDomain={true} />
   );
   expect(rendered.type()).toBe('a');
   expect(rendered.text()).toBe('Open in example.com');
+});
+
+it('renders nothing with an unrecognized domain by default', () => {
+  const rendered = shallow(
+    <LinkToInbox email={'example@example.com'} />
+  );
+  expect(rendered.type()).toBe(null);
 });
 
 it('renders as a button', () => {
@@ -36,6 +43,17 @@ it('renders as a button', () => {
   );
   expect(rendered.type()).toBe('button');
   expect(rendered.text()).toBe('Open in Outlook');
+});
+
+it('includes passed classNames', () => {
+  const className = 'test-class';
+  const rendered = shallow(
+    <LinkToInbox
+        email={'example@live.com'}
+        className={className}
+      />
+  );
+  expect(rendered.hasClass(className)).toBe(true);
 });
 
 it('navigates on click', () => {
