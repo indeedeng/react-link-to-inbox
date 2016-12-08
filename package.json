@@ -13,7 +13,9 @@
     "prepublish": "babel index.babel.js -o index.js",
     "storybook": "start-storybook -p 6006",
     "test": "npm run unit-test && npm run lint && npm run audit",
-    "unit-test": "jest"
+    "unit-test": "jest",
+    "watch": "chokidar 'index.babel.js' -c 'npm run prepublish'",
+    "watch-test": "chokidar 'index.babel.js' -c 'npm run build'"
   },
   "keywords": [
     "react",
@@ -37,6 +39,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "chokidar-cli": "^1.2.0",
     "codecov": "^1.0.1",
     "del-cli": "^0.2.0",
     "enzyme": "^2.6.0",

@@ -3,7 +3,7 @@ import {getSpec, getHref} from 'link-to-inbox';
 import template from 'lodash-template';
 import styled from 'styled-components';
 
-const LinkToInbox = ({template: templ, subject, sender, email, tag, className}) => {
+const LinkToInbox = ({template: templ, subject, sender, email, tag, guessUnknownDomain, className}) => {
   if (!email.includes('@')) {
     throw new Error(`Invalid email address ${email}`);
   }
@@ -16,6 +16,9 @@ const LinkToInbox = ({template: templ, subject, sender, email, tag, className}) 
   let href = getHref(email, filter, true);
 
   if (!spec) {
+    if (!guessUnknownDomain) {
+      return null;
+    }
     const domain = email.split('@')[1];
     spec = {
       name: domain,
@@ -51,12 +54,16 @@ LinkToInbox.propTypes = {
   template: React.PropTypes.string,
   subject: React.PropTypes.string,
   sender: React.PropTypes.string,
+  tag: React.PropTypes.oneOf(['a', 'button', 'input']),
+  guessUnknownDomain: React.PropTypes.boolean,
   email: (props, propName) => {
+    if (!props[propName]) {
+      return new Error(`email is required`);
+    }
     if (!props[propName].includes('@')) {
       return new Error(`email must be a valid email address, got ${props[propName]}`);
     }
   },
-  tag: React.PropTypes.oneOf(['a', 'button', 'input']),
   className: React.PropTypes.string
 };
 
