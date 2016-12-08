@@ -30,7 +30,8 @@
     "link-to-inbox": "git://github.com/doug-wade/link-to-inbox.git#expose-get-spec",
     "lodash-template": "^1.0.0",
     "react": "0.14 || 15",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "styled-components": "1.1.2"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.33.1",
@@ -49,7 +50,6 @@
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
     "snyk": "^1.21.2",
-    "styled-components": "^1.1.2",
     "xo": "^0.17.1"
   },
   "jest": {
