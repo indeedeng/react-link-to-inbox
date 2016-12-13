@@ -25,6 +25,7 @@
   ],
   "author": "Doug Wade <douglas.b.wade@gmail.com>",
   "license": "Apache-2.0",
+  "repository": "https://github.com/indeedeng/react-link-to-inbox",
   "dependencies": {
     "global": "^4.3.1",
     "link-to-inbox": "git://github.com/doug-wade/link-to-inbox.git#expose-get-spec",
