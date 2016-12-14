@@ -140,3 +140,7 @@ it('throws on invalid email addresses', () => {
         email={'example'}
       />)).toThrow(new Error(`Invalid email address example`));
 });
+
+it('throws on unprovided email addresses', () => {
+  expect(() => shallow(<LinkToInbox/>)).toThrow(new Error(`email is required`));
+});

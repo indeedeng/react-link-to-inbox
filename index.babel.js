@@ -3,52 +3,58 @@ import {getSpec, getHref} from 'link-to-inbox';
 import template from 'lodash-template';
 import styled from 'styled-components';
 
-const LinkToInbox = ({template: templ, subject, sender, email, tag, guessUnknownDomain, className}) => {
-  if (!email.includes('@')) {
-    throw new Error(`Invalid email address ${email}`);
-  }
-
-  tag = tag || 'a';
-  templ = templ || 'Open in <%- name %>';
-
-  const filter = {subject, sender};
-  let spec = getSpec(email, filter, true);
-  let href = getHref(email, filter, true);
-
-  if (!spec) {
-    if (!guessUnknownDomain) {
-      return null;
+class LinkToInbox extends React.Component {
+  render() {
+    let {template: templ, style, subject, sender, email, tag, guessUnknownDomain, className} = this.props;
+    if (!email) {
+      throw new Error(`email is required`);
     }
-    const domain = email.split('@')[1];
-    spec = {
-      name: domain,
-      protocol: 'https',
-      domain,
-      path: ''
-    };
-  }
+    if (!email.includes('@')) {
+      throw new Error(`Invalid email address ${email}`);
+    }
 
-  if (!href) {
-    href = spec.protocol + '://' + spec.domain + spec.path;
-  }
+    tag = tag || 'a';
+    templ = templ || 'Open in <%- name %>';
 
-  const msg = template(templ)({subject, email, sender, href, ...spec});
-  function clickHandler() {
-    window.open(href);
-  }
+    const filter = {subject, sender};
+    let spec = getSpec(email, filter, true);
+    let href = getHref(email, filter, true);
 
-  switch (tag) {
-    case 'a':
-      return (<a href={href} className={className}>{msg}</a>);
-    case 'button':
-      return (<button onClick={clickHandler} className={className}>{msg}</button>);
-    case 'input':
-      return (<input type="button" onClick={clickHandler} value={msg} className={className}/>);
-    default:
-      console.error(`unrecognized tag ${tag}`);
-      throw new Error(`unrecognized tag ${tag}`);
+    if (!spec) {
+      if (!guessUnknownDomain) {
+        return null;
+      }
+      const domain = email.split('@')[1];
+      spec = {
+        name: domain,
+        protocol: 'https',
+        domain,
+        path: ''
+      };
+    }
+
+    if (!href) {
+      href = spec.protocol + '://' + spec.domain + spec.path;
+    }
+
+    const msg = template(templ)({subject, email, sender, href, ...spec});
+    function clickHandler() {
+      window.open(href);
+    }
+
+    switch (tag) {
+      case 'a':
+        return (<a href={href} className={className} style={style}>{msg}</a>);
+      case 'button':
+        return (<button onClick={clickHandler} className={className} style={style}>{msg}</button>);
+      case 'input':
+        return (<input type="button" onClick={clickHandler} value={msg} className={className} style={style}/>);
+      default:
+        console.error(`unrecognized tag ${tag}`);
+        throw new Error(`unrecognized tag ${tag}`);
+    }
   }
-};
+}
 
 LinkToInbox.propTypes = {
   template: React.PropTypes.string,
@@ -64,6 +70,7 @@ LinkToInbox.propTypes = {
       return new Error(`email must be a valid email address, got ${props[propName]}`);
     }
   },
+  style: React.PropTypes.string,
   className: React.PropTypes.string
 };
 

@@ -32,7 +32,7 @@
     "lodash-template": "^1.0.0",
     "react": "0.14 || 15",
     "react-dom": "^15.4.1",
-    "styled-components": "1.1.2"
+    "styled-components": "^1.1.2"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.33.1",
@@ -59,7 +59,7 @@
     "coverageDirectory": ".coverage",
     "coverageThreshold": {
       "global": {
-        "branches": 80,
+        "branches": 70,
         "functions": 80,
         "lines": 80,
         "statements": 80
