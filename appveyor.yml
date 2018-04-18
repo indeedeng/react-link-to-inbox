@@ -4,18 +4,18 @@ environment:
 
 # Install scripts. (runs after repo cloning)
 install:
-  # Get the latest stable version of Node.js or io.js
+  # Get the latest stable version of node
   - ps: Install-Product node $env:nodejs_version
   # install modules
-  - yarn
+  - npm i
 
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
-  - node --version
-  - yarn --version
+  - node -v
+  - npm -v
   # run tests
-  - yarn test
+  - npm test
 
 # Don't actually build.
 build: off
