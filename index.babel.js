@@ -2,19 +2,17 @@ import React from 'react';
 import {getSpec, getHref} from 'link-to-inbox';
 import template from 'lodash-template';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 class LinkToInbox extends React.Component {
   render() {
-    let {template: templ, style, subject, sender, email, tag, guessUnknownDomain, className} = this.props;
+    const {template: templ, style, subject, sender, email, tag, guessUnknownDomain, className} = this.props;
     if (!email) {
       throw new Error(`email is required`);
     }
     if (!email.includes('@')) {
       throw new Error(`Invalid email address ${email}`);
     }
-
-    tag = tag || 'a';
-    templ = templ || 'Open in <%- name %>';
 
     const filter = {subject, sender};
     let spec = getSpec(email, filter, true);
@@ -46,7 +44,7 @@ class LinkToInbox extends React.Component {
       case 'a':
         return (<a href={href} className={className} style={style}>{msg}</a>);
       case 'button':
-        return (<button onClick={clickHandler} className={className} style={style}>{msg}</button>);
+        return (<button onClick={clickHandler} className={className} style={style} type="button">{msg}</button>);
       case 'input':
         return (<input type="button" onClick={clickHandler} value={msg} className={className} style={style}/>);
       default:
@@ -56,22 +54,32 @@ class LinkToInbox extends React.Component {
   }
 }
 
+const emailPropValidator = (props, propName) => {
+  if (!props[propName]) {
+    return new Error(`email is required`);
+  }
+  if (!props[propName].includes('@')) {
+    return new Error(`email must be a valid email address, got ${props[propName]}`);
+  }
+};
+
 LinkToInbox.propTypes = {
-  template: React.PropTypes.string,
-  subject: React.PropTypes.string,
-  sender: React.PropTypes.string,
-  tag: React.PropTypes.oneOf(['a', 'button', 'input']),
-  guessUnknownDomain: React.PropTypes.boolean,
-  email: (props, propName) => {
-    if (!props[propName]) {
-      return new Error(`email is required`);
-    }
-    if (!props[propName].includes('@')) {
-      return new Error(`email must be a valid email address, got ${props[propName]}`);
-    }
-  },
-  style: React.PropTypes.string,
-  className: React.PropTypes.string
+  template: PropTypes.string,
+  subject: PropTypes.string.isRequired,
+  sender: PropTypes.string.isRequired,
+  tag: PropTypes.oneOf(['a', 'button', 'input']),
+  guessUnknownDomain: PropTypes.bool,
+  email: emailPropValidator.isRequired,
+  style: PropTypes.string,
+  className: PropTypes.string
+};
+
+LinkToInbox.defaultProps = {
+  tag: 'a',
+  template: 'Open in <%- name %>',
+  style: {},
+  guessUnknownDomain: false,
+  className: ''
 };
 
 export default LinkToInbox;

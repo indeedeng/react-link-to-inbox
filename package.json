@@ -28,34 +28,39 @@
   "repository": "https://github.com/indeedeng/react-link-to-inbox",
   "dependencies": {
     "global": "^4.3.1",
-    "link-to-inbox": "git://github.com/doug-wade/link-to-inbox.git#expose-get-spec",
+    "link-to-inbox": "^1.2.0",
     "lodash-template": "^1.0.0",
+    "prop-types": "^15.6.1",
     "react": "0.14 || 15",
     "react-dom": "^15.4.1",
-    "styled-components": "^1.1.2"
+    "styled-components": "^3.2.6"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.33.1",
     "babel-cli": "^6.18.0",
-    "babel-jest": "^17.0.2",
+    "babel-jest": "^22.4.3",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "chokidar-cli": "^1.2.0",
-    "codecov": "^1.0.1",
-    "del-cli": "^0.2.0",
-    "enzyme": "^2.6.0",
-    "eslint-config-xo-react": "^0.10.0",
-    "eslint-plugin-react": "^6.7.1",
-    "jest": "^17.0.3",
+    "codecov": "^3.0.0",
+    "del-cli": "^1.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
     "snyk": "^1.21.2",
-    "xo": "^0.17.1"
+    "xo": "^0.20.3"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTest.js",
     "collectCoverage": true,
-    "collectCoverageFrom": "index.js",
+    "collectCoverageFrom": [
+      "index.js"
+    ],
     "coverageDirectory": ".coverage",
     "coverageThreshold": {
       "global": {
