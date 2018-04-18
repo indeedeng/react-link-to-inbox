@@ -4,6 +4,8 @@ cache:
     - node_modules
 node_js:
   - node
+  - 8
+  - 6
 test:
   - npm test
 after_success:
