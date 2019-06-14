@@ -4,7 +4,6 @@
   "description": "A React wrapper for link-to-inbox",
   "main": "index.js",
   "scripts": {
-    "audit": "snyk test",
     "build": "npm run clean && npm run prepublish && npm run test",
     "build-storybook": "build-storybook",
     "clean": "del index.js",
@@ -12,7 +11,7 @@
     "lint": "xo index.babel.js",
     "prepublish": "babel index.babel.js -o index.js",
     "storybook": "start-storybook -p 6006",
-    "test": "npm run unit-test && npm run lint && npm run audit",
+    "test": "npm run unit-test && npm run lint",
     "unit-test": "jest",
     "watch": "chokidar 'index.babel.js' -c 'npm run prepublish'",
     "watch-test": "chokidar 'index.babel.js' -c 'npm run build'"
