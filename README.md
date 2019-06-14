@@ -78,4 +78,4 @@ See the examples in [our storybook](https://indeedeng.github.io/react-link-to-in
 This project is governed by the [Contributor Covenant v 1.4.1](CODE_OF_CONDUCT.md)
 
 ## License
-This project uses the [Apache 2.0](LICENSE.txt) license.
+This project uses the [Apache 2.0](LICENSE) license.
