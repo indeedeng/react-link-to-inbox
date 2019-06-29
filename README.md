@@ -1,4 +1,4 @@
-# react-link-to-inbox ![react-link-to-inbox travis build status](https://travis-ci.org/indeedeng/react-link-to-inbox.svg) ![react-link-to-inbox appveyor build status](https://ci.appveyor.com/api/projects/status/github/doug-wade/react-link-to-inbox?branch=master&svg=true) ![react-link-to-inbox codecov status](https://img.shields.io/codecov/c/github/indeedeng/react-link-to-inbox.svg) ![NetflixOSS Lifecycle](https://img.shields.io/osslifecycle/indeedeng/react-link-to-inbox.svg)
+# react-link-to-inbox ![react-link-to-inbox travis build status](https://travis-ci.org/indeedeng/react-link-to-inbox.svg) ![react-link-to-inbox appveyor build status](https://ci.appveyor.com/api/projects/status/github/doug-wade/react-link-to-inbox?branch=master&svg=true) ![react-link-to-inbox codecov status](https://img.shields.io/codecov/c/github/indeedeng/react-link-to-inbox.svg) ![OSS Lifecycle](https://img.shields.io/osslifecycle/indeedeng/react-link-to-inbox.svg)
 
 
 A thin react wrapper around [link-to-inbox](http://npmjs.com/package/link-to-inbox)
