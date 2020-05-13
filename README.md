@@ -72,7 +72,7 @@ export default (email) => {
 
 ## Documentation
 
-See the examples in [our storybook](https://indeedeng.github.io/react-link-to-inbox/).
+See the examples in [our storybook](https://doug-wade.github.io/react-link-to-inbox).
 
 ## Code of Conduct
 This project is governed by the [Contributor Covenant v 1.4.1](CODE_OF_CONDUCT.md)
